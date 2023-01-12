@@ -37,7 +37,7 @@ local function export_to_html_and_open_output(params)
   end
 
   vim.cmd.TOhtml({ range = range })
-  local tohtml_bufnr = vim.api.nvim_win_get_buf(0)
+  local tohtml_bufnr = vim.api.nvim_get_current_buf()
 
   path = vim.fn.fnameescape(path .. '.html')
   vim.api.nvim_buf_set_name(tohtml_bufnr, path)
