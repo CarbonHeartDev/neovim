@@ -23,7 +23,7 @@ local function export_to_html_and_open_output(params)
         )
         return
       end
-      path = vim.g.hardcopy_default_directory
+      path = default_directory
     else
       path = vim.loop.fs_stat(vim.fn.expand('~/Downloads/')) and vim.fn.expand('~/Downloads/')
         or vim.fn.tempname()
