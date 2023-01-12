@@ -4,7 +4,6 @@ end
 vim.g.loaded_hardcopy = 1
 
 local function export_to_html_and_open_output(params)
-  vim.pretty_print(params)
   local range = params.range ~= 0 and {params.line1, params.line2} or {}
   local path = ''
   if #params.args > 0 then
@@ -28,7 +27,6 @@ local function export_to_html_and_open_output(params)
     end
     -- Add filename
     path = path .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:t')
-    vim.pretty_print(path)
     -- Add range at end of filename if specified
     if params.range > 0 then
       path = path .. '(L' .. params.line1 .. (params.range > 1 and '-' .. params.line2 or '') .. ')'
