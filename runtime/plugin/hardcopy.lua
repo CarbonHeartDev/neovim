@@ -71,7 +71,17 @@ end
 
 local function unix_fallback_printing_system()
 
-  -- Todo: add check to see if the system supports fallback printing
+  -- TODO: check if printer_interface_command an accurate argument name?
+  local function check_fallback_printing_support(printer_interface_command)
+
+    check = vim.fn.system('command -v lpstat')
+
+    if check ~= '' then
+      return true
+    else
+      return false
+    end
+  end
 
   local function parse_raw_printer_list(lpstat_output)
     local printer_names = {}
@@ -83,10 +93,13 @@ local function unix_fallback_printing_system()
     return printer_names
   end
 
-  local raw_printer_list = vim.fn.system('lpstat -v')
-  local parsed_printer_list = parse_raw_printer_list(raw_printer_list)
-  
-  error("Not yet implemented")
+  if check_fallback_printing_support then
+    local raw_printer_list = vim.fn.system('lpstat -v')
+    local parsed_printer_list = parse_raw_printer_list(raw_printer_list)
+    return parsed_printer_list
+  else
+    error("The system does not support fallback printing")
+  end
 
 end
 
