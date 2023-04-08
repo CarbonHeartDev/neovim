@@ -9,7 +9,7 @@ function! s:exportCurrentBufferToTempFile()
   execute "bwipeout!" l:tempBufferNr
   call netrw#BrowseX(l:exportTempFilePath, 0)
 endfunction
-
+// Good job
 let s:save_cpo = &cpo
 set cpo&vim
 
